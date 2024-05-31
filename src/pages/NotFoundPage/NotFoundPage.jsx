@@ -1,4 +1,4 @@
-import css from "./NoteFoundPage.module.css";
+import css from "./NotFoundPage.module.css";
 
 const NotFoundPage = () => {
   return (
