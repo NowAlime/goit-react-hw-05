@@ -1,25 +1,34 @@
-import { useEffect } from "react";
-import axios from "axios";
+import { lazy } from "react";
 
-const HomePage = ({ setLoading }) => {
+const MovieList = lazy(() => import("../../components/MovieList/MovieList"));
+import { useState, useEffect } from "react";
+import fetchTrendingMovie from "../../components/fetchTrendingMovie/fetchTrendingMovie";
+import Error from "../../components/Error/Error";
+const HomePage = ({ onLoad }) => {
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(false);
+
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
+    const loadTrendingMovie = async () => {
       try {
-        // Your data fetching logic here
-        const response = await axios.get("API_ENDPOINT");
-        // Process the response data
+        onLoad(true);
+
+        const initMovie = await fetchTrendingMovie();
+        setError(false);
+        setMovies(initMovie);
       } catch (error) {
-        console.error(error);
+        setError(true);
       } finally {
-        setLoading(false);
+        onLoad(false);
       }
     };
-
-    fetchData();
-  }, [setLoading]);
-
-  return <div>Home Page Content</div>;
+    loadTrendingMovie();
+  }, [onLoad, setMovies, error]);
+  return (
+    <div>
+      {error && <Error />}
+      {movies.length > 0 && <MovieList movies={movies} />}
+    </div>
+  );
 };
-
 export default HomePage;

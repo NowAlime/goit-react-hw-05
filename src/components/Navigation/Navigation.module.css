@@ -1,16 +1,35 @@
-.nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    background-color: #282c34;
-  }
+.container {
+  background-color: rgb(18, 109, 237);
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+}
+.navigation {
   
-  .nav a {
-    color: #61dafb;
-    text-decoration: none;
-    font-size: 1.5rem;
-  }
-  
-  .nav a:hover {
-    text-decoration: underline;
-  }
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 0 82px;
+}
+.home {
+  color: blueviolet;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  transition: color 0.5s;
+}
+.home:hover {
+  color: blue;
+  font-size: 24px;
+  font-weight: 700;
+}
+.active {
+  color: blueviolet;
+  text-decoration: underline;
+  font-size: 24px;
+  font-weight: 700;
+}
