@@ -22,7 +22,7 @@ export default function App() {
       </header>
       <main>
         
-        {loading && <Loader />}
+
         
         <Suspense fallback={<Loader />}>
           <Routes>
